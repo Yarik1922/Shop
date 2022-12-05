@@ -1,5 +1,5 @@
 const shop = document.querySelector(".shop__items");
-const cart = document.querySelector(".cart__list");
+const cart = document.querySelector(".cart");
 const items = [
   {
     id: 1,
@@ -62,7 +62,12 @@ function addToCart(id) {
 }
 function createCart() {
   cart.innerHTML = "";
+  let total = 0;
+  let totalPrice;
+  const cartList = document.createElement("ul");
+  cartList.classList = "cart__list";
   for (let i = 0; i < inCart.length; i++) {
+    total += inCart[i].price;
     const li = document.createElement("li");
     li.className = "cart__item";
     li.innerHTML = `
@@ -76,10 +81,20 @@ function createCart() {
 >
                           &times;
                         </button>`;
-    cart.append(li);
+    totalPrice = totalDiv(total);
+    cartList.append(li);
+    cart.append(cartList);
   }
+  cart.prepend(totalPrice);
 }
 function remove(index) {
   inCart.splice(index, 1);
   createCart();
 }
+const totalDiv = (text) => {
+  const h2 = document.createElement("h2");
+  h2.className = "cart__total";
+  h2.textContent = "Total Price : " + text + "$";
+  return h2;
+};
+
