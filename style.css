@@ -14,7 +14,7 @@
      margin: 0 auto;
  }
 
- .shop__title, .cart__title {
+ .shop__title, .cart__total {
      text-align: center;
      text-transform: uppercase;
      font-weight: 500;
